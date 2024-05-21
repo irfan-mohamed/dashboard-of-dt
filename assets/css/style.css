@@ -8527,6 +8527,7 @@ textarea.form-control-lg {
   color: rgba(var(--bs-dark-rgb), var(--bs-text-opacity)) !important; }
 
 .text-black {
+  text-decoration: none;
   --bs-text-opacity: 1;
   color: rgba(var(--bs-black-rgb), var(--bs-text-opacity)) !important; }
 
@@ -14489,3 +14490,24 @@ dl {
 input[type=file]::-webkit-file-upload-button{
     cursor: pointer;
 }
+
+/* Assessment style */
+.correct-answer {
+  font-weight: bold;
+  color: green;
+}
+.question-number {
+  font-weight: bold;
+  margin-right: 10px;
+}
+.question {
+  margin-bottom: 10px;
+}
+.options {
+  list-style-type: none;
+  padding: 0;
+}
+.options li {
+  margin-bottom: 5px;
+}
+

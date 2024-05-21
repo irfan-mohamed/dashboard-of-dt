@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>DesignThinking</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="../assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="../assets/vendors/css/vendor.bundle.base.css">
+    <!-- FullCalendar CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.1/main.min.css" integrity="sha512-q3DpEJZzR7L7JDNZzQnlbZxT7rxOsQKbQnlgJytbE4B8tyfi6VRv8L7X5lFcFxBC6BXEKn8OdiMxxfsBAY/pHg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- endinject -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="../assets/images/favicon.ico" />
+    <style>
+        .card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            padding: 20px;
+        }
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .profile-pic {
+            border-radius: 50%;
+            height: 50px;
+            width: 50px;
+            margin-right: 20px;
+        }
+        .progress-bar {
+            background-color: #f3f3f3;
+            border-radius: 13px;
+            padding: 3px;
+            margin-bottom: 10px;
+        }
+        .progress-bar-inner {
+            height: 20px;
+            border-radius: 10px;
+            background-color: #4caf50;
+            width: 0%;
+        }
+        .assessment-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .assessment-table th, .assessment-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .assessment-table th {
+            background-color: #f2f2f2;
+        }
+        #calendar {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-scroller">
+        <!-- partial:partials/_navbar.html -->
+        <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+            <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+                <a class="navbar-brand brand-logo" href="index.html"><img src="../assets/images/logo.svg" alt="logo" /></a>
+                <a class="navbar-brand brand-logo-mini" href="index.html"><img src="../assets/images/logo-mini.svg" alt="logo" /></a>
+            </div>
+            <div class="navbar-menu-wrapper d-flex align-items-stretch">
+                <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                    <span class="mdi mdi-menu"></span>
+                </button>
+                <div class="search-field d-none d-md-block">
+                    <form class="d-flex align-items-center h-100" action="#">
+                        <div class="input-group">
+                            <div class="input-group-prepend bg-transparent">
+                                <i class="input-group-text border-0 mdi mdi-magnify"></i>
+                            </div>
+                            <input type="text" class="form-control bg-transparent border-0" placeholder="Search projects">
+                        </div>
+                    </form>
+                </div>
+                <ul class="navbar-nav navbar-nav-right">
+                    <li class="nav-item nav-profile dropdown">
+                        <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                            <div class="nav-profile-img">
+                                <img src="../assets/images/faces/face1.jpg" alt="image">
+                                <span class="availability-status online"></span>
+                            </div>
+                            <div class="nav-profile-text">
+                                <p class="mb-1 text-black">David Greymaax</p>
+                            </div>
+                        </a>
+                        <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
+                            <a class="dropdown-item" href="#">
+                                <i class="mdi mdi-cached me-2 text-success"></i> Activity Log </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">
+                                <i class="mdi mdi-logout me-2 text-primary"></i> Signout </a>
+                        </div>
+                    </li>
+                </ul>
+                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+                    <span class="mdi mdi-menu"></span>
+                </button>
+            </div>
+        </nav>
+        <!-- partial -->
+        <div class="container-fluid page-body-wrapper">
+            <!-- partial:partials/_sidebar.html -->
+            <nav class="sidebar sidebar-offcanvas" id="sidebar">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">
+                            <span class="menu-title">Dashboard</span>
+                            <i class="mdi mdi-home menu-icon"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../pages/category.html">
+                            <span class="menu-title">Category</span>
+                            <i class="mdi mdi-view-grid menu-icon"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../pages/stages.html">
+                            <span class="menu-title">Stages</span>
+                            <i class="mdi mdi-sort-variant menu-icon"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="collapse" href="#courses" aria-expanded="false" aria-controls="courses">
+                            <span class="menu-title">Courses</span>
+                            <i class="menu-arrow"></i>
+                            <i class="mdi mdi-book-open-page-variant menu-icon"></i>
+                        </a>
+                        <div class="collapse" id="courses">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="../pages/allCourses.html">All Courses</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="../pages/addCourses.html">Add Course</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="../pages/addAssessment.html">Add Assessment</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../pages/certificateSetting.html">
+                            <span class="menu-title">Certificate Setting</span>
+                            <i class="mdi mdi-certificate menu-icon"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="collapse" href="#users" aria-expanded="false" aria-controls="users">
+                            <span class="menu-title">User Setup</span>
+                            <i class="menu-arrow"></i>
+                            <i class="mdi mdi-account-multiple-outline menu-icon"></i>
+                        </a>
+                        <div class="collapse" id="users">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="../pages/settings.html">Settings</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="../pages/superadmin.html">Admin Management</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="../pages/students.html">User Management</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../pages/supportTicket.html">
+                            <span class="menu-title">Support Ticket</span>
+                            <i class="mdi mdi-comment-alert menu-icon"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../pages/icons/mdi.html">
+                            <span class="menu-title">Helpline Assistance</span>
+                            <i class="mdi mdi-worker menu-icon"></i>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- partial -->
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    <!-- User Progress Page Content -->
+                    <div class="card">
+                        <div class="card-header">
+                            <img src="../assets/images/faces/face1.jpg" alt="User Profile Picture" class="profile-pic">
+                            <div>
+                                <h3>David Greymaax</h3>
+                                <p>Email: david.greymaax@example.com</p>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h4>Course Progress</h4>
+                            <div class="progress-bar">
+                                <div class="progress-bar-inner" style="width: 70%;">70% of the course completed</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h3>Assessment Scores</h3>
+                            <table class="assessment-table">
+                                <thead>
+                                    <tr>
+                                        <th>Assessment</th>
+                                        <th>Score</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Introduction</td>
+                                        <td>85%</td>
+                                        <td>Completed</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Empathize</td>
+                                        <td>90%</td>
+                                        <td>Completed</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Define</td>
+                                        <td>75%</td>
+                                        <td>Completed</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h3>Active Days Calendar</h3>
+                            <div id="calendar"></div>
+                        </div>
+                    </div>
+                    <!-- End of User Progress Page Content -->
+                </div>
+                <!-- content-wrapper ends -->
+                <!-- partial:partials/_footer.html -->
+                <footer class="footer">
+                    <div class="container-fluid d-flex justify-content-between">
+                        <span class="text-muted d-block text-center text-sm-start d-sm-inline-block">Copyright © DesignThinking 2024</span>
+                    </div>
+                </footer>
+                <!-- partial -->
+            </div>
+            <!-- main-panel ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="../assets/vendors/js/vendor.bundle.base.js"></script>
+    <!-- FullCalendar JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.1/main.min.js" integrity="sha512-RZZ4nLsJbbLQ1KgzQm3pDLtTcR2SCIS++D46RUYo5+1gE4H7TzX6mFh4ZZ87GlchYXfdt8sHgkHR9GbKVOdK1g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- endinject -->
+    <!-- inject:js -->
+    <script src="../assets/js/off-canvas.js"></script>
+    <script src="../assets/js/hoverable-collapse.js"></script>
+    <script src="../assets/js/misc.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+    <script src="../assets/js/chart.js"></script>
+    <script src="../assets/js/dashboard.js"></script>
+    <script src="../assets/js/todolist.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                events: [
+                    {
+                        title: 'Active Day',
+                        start: '2024-05-01',
+                        color: '#28a745'
+                    },
+                    {
+                        title: 'Active Day',
+                        start: '2024-05-05',
+                        color: '#28a745'
+                    },
+                    {
+                        title: 'Active Day',
+                        start: '2024-05-09',
+                        color: '#28a745'
+                    }
+                ]
+            });
+            calendar.render();
+        });
+    </script>
+    <!-- End custom js for this page -->
+</body>
+
+</html>
